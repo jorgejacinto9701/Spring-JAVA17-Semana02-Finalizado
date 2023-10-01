@@ -67,7 +67,6 @@
 <script type="text/javascript">
 
 $.getJSON("listaDeporte", {}, function(data){
-	console.log(data);
 	$.each(data, function(index,item){
 		$("#id_deporte").append("<option value="+item.idDeporte +">"+ item.nombre +"</option>");
 	});
@@ -120,15 +119,15 @@ $('#id_form').bootstrapValidator({
                     message: 'El nombre es un campo obligatorio'
                 },
                 stringLength :{
-                	message:'El nombre es de 3 a 100 caracteres',
-                	min : 3,
+                	message:'El nombre es de 5 a 100 caracteres',
+                	min : 5,
                 	max : 100
                 },
                 remote :{
-            	    delay: 1000,
-            	 	url: 'buscaPorNombreModalidad',
-            	 	message: 'El Nombre ya existe'
-             	}
+                	delay   : 500,
+                	url     : 'buscaModalidadPorNombre',
+                	message : 'El nombre ya existe'
+                }
             }
         },
         numHombres: {
@@ -210,8 +209,8 @@ $('#id_form').bootstrapValidator({
                     message: 'La sede es un campo obligatorio'
                 },
                 stringLength :{
-                	message:'La sede es de 3 a 20 caracteres',
-                	min : 3,
+                	message:'La sede es de 5 a 20 caracteres',
+                	min : 5,
                 	max : 20
                 }
             }

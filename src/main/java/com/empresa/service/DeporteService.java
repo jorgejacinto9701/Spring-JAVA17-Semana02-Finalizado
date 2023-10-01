@@ -6,6 +6,7 @@ import com.empresa.entity.Deporte;
 
 public interface DeporteService {
 
-	public abstract List<Deporte> listarTodos();
+	public abstract List<Deporte> listaDeporte();
+	
 	
 }

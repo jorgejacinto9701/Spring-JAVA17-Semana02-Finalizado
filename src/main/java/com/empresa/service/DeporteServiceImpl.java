@@ -12,11 +12,11 @@ import com.empresa.repository.DeporteRepository;
 public class DeporteServiceImpl implements DeporteService {
 
 	@Autowired
-	private DeporteRepository repository;
+	private  DeporteRepository repository;
 	
 	@Override
-	public List<Deporte> listarTodos() {
-		return repository.findAll();
+	public List<Deporte> listaDeporte() {
+		return repository.findByOrderByNombreAsc();
 	}
 
 	

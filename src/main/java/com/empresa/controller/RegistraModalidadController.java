@@ -18,46 +18,53 @@ import com.empresa.service.ModalidadService;
 
 @Controller
 public class RegistraModalidadController {
-
-	@Autowired
-	private DeporteService deporteService;
-
+	
 	@Autowired
 	private ModalidadService modalidadService;
-
-	@GetMapping(value = "/verRegistraModalidad")
-	public String verAlumno() {
-		return "registraModalidad";
-	}
-
-	@GetMapping(value = "/listaDeporte")
+	@Autowired
+	private DeporteService deporteService;
+	
+		
+	@GetMapping("/verRegistraModalidad" )
+	public String verAlumno() {return "registraModalidad";}
+	
+	
 	@ResponseBody
-	public List<Deporte> cargaDeporte() {
-		return deporteService.listarTodos();
+	@GetMapping("/listaDeporte")
+	public List<Deporte> listaDeporte(){
+		return deporteService.listaDeporte();
 	}
-
+	
+	
+	@ResponseBody
 	@PostMapping("/registraModalidad")
-	@ResponseBody
-	public Map<?, ?> registra(Modalidad obj) {
+	public Map<?, ?> registra(Modalidad obj){
 		HashMap<String, String> map = new HashMap<String, String>();
 		Modalidad objSalida = modalidadService.insertaModalidad(obj);
 		if (objSalida == null) {
 			map.put("MENSAJE", "Error en el registro");
-		} else {
+		}else {
 			map.put("MENSAJE", "Registro exitoso");
 		}
 		return map;
 	}
-
 	
-	@GetMapping("/buscaPorNombreModalidad")
 	@ResponseBody
+	@GetMapping("/buscaModalidadPorNombre")
 	public String validaNombre(String nombre) {
-		List<Modalidad> lstModalidad = modalidadService.listaPorNombre(nombre);
-		if (CollectionUtils.isEmpty(lstModalidad)) {
-			return "{\"valid\" : true }";
-		} else {
-			return "{\"valid\" : false }";
+		List<Modalidad> lstModalidad = modalidadService.listaModalidadPorNombre(nombre);
+		if(CollectionUtils.isEmpty(lstModalidad)) {
+			return "{\"valid\":true}";
+		}else {
+			return "{\"valid\":false}";
 		}
 	}
+	
 }
+
+
+
+
+
+
+

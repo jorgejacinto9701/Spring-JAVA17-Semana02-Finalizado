@@ -15,13 +15,13 @@ public class ModalidadServiceImpl implements ModalidadService{
 	private ModalidadRepository repository;
 	
 	@Override
-	public Modalidad insertaModalidad(Modalidad obj) {
-		return repository.save(obj);
+	public List<Modalidad> listaModalidadPorNombre(String nombre) {
+		return repository.findByNombre(nombre);
 	}
 
 	@Override
-	public List<Modalidad> listaPorNombre(String nombre) {
-		return repository.findByNombreIgnoreCase(nombre);
+	public Modalidad insertaModalidad(Modalidad obj) {
+		return repository.save(obj);
 	}
 
 }

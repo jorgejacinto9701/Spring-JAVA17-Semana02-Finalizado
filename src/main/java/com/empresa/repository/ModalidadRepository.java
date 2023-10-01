@@ -8,7 +8,5 @@ import com.empresa.entity.Modalidad;
 
 public interface ModalidadRepository extends JpaRepository<Modalidad, Integer>{
 
-	
-	public List<Modalidad> findByNombreIgnoreCase(String nombre);
-	
+	public abstract List<Modalidad> findByNombre(String nombre);
 }
